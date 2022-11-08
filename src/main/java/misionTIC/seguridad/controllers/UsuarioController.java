@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,66 +26,81 @@ public class UsuarioController {
 
     @GetMapping("")
     public List<Usuario> index(){
-        return this.repositorio.findAll();
+        ArrayList<Usuario> array = new ArrayList<>();
+        List<Usuario> lista = this.repositorio.findAll();
+        for(int i = 0; i < lista.size();i++){
+            Usuario u = lista.get(i);
+            if(u.getRol()!=null){
+                Rol rol = this.rolrep.findById(u.getRol()).get();
+                u.setRol(rol.getNombre());
+                array.add(u);
+            }else{
+                u.setRol("No tiene rol");
+                array.add(u);
+            }
+        }
+        return array;
     }
 
     @GetMapping("/{id}")
     public Usuario show(@PathVariable String id){
-        Optional<Usuario> opu = this.repositorio.findById(id);
-        return opu.orElse(null);
+        Usuario u = this.repositorio.findById(id).orElse(null);
+        if(u!=null){
+            Rol rol= this.rolrep.findById(u.getRol()).get();
+            u.setRol(rol.getNombre());
+            return u;
+        }
+        return null;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Usuario create(@RequestBody Usuario request){
-        String clave = Hash(request.getContraseña());
-        request.setContraseña(clave);
-        
-        return this.repositorio.save(request);
+    public String create(@RequestBody Usuario request){
+        Rol rol = this.rolrep.findById(request.getRol()).orElse(null);
+        if (rol != null){
+            String clave = Hash(request.getContraseña());
+            request.setContraseña(clave);
+            this.repositorio.save(request);
+            return "Se registro";
+        }
+        return "No existe el rol";
     }
+
 
     @PutMapping("/{id}")
-    public Usuario update(@PathVariable String id, @RequestBody Usuario request){
-        Optional<Usuario> opt = this.repositorio.findById(id);
-        if(opt.isPresent()){
-            Usuario actual = opt.get();
-
-            if(request.getSeudonimo() != null && !request.getSeudonimo().isBlank())
-                actual.setSeudonimo(request.getSeudonimo());
-            if(request.getCorreo() != null && !request.getCorreo().isBlank())
-                actual.setCorreo(request.getCorreo());
-            if(request.getContraseña() != null && !request.getContraseña().isBlank())
-                actual.setContraseña(request.getContraseña());
-            if(request.getRol() != null)
-                actual.setRol(request.getRol());
-
-            return this.repositorio.save(actual);
+    public String update(@PathVariable String id,@RequestBody Usuario request){
+        Usuario u = this.repositorio.findById(id).orElse(null);
+        if(u!=null ){
+                if(request.getSeudonimo() != null && !request.getSeudonimo().isBlank())
+                    u.setSeudonimo(request.getSeudonimo());
+                if(request.getCorreo() != null && !request.getCorreo().isBlank())
+                    u.setCorreo(request.getCorreo());
+                if(request.getContraseña() != null && !request.getContraseña().isBlank())
+                    u.setContraseña(request.getContraseña());
+                if(request.getRol() != null && !request.getRol().isBlank()){
+                    Rol r = this.rolrep.findById(request.getRol()).orElse(null);
+                    if(r!=null){
+                        u.setRol(request.getRol());
+                    }else{
+                        return "El rol no existe";
+                    }
+                }
+                this.repositorio.save(u);
+                return "Se actualizo";
         }
-        return null;
-    }
-
-
-    @PutMapping("/{usuario}/{rol}")
-    public Usuario AsignarRol(@PathVariable String usuario,@PathVariable String rol){
-        Usuario u = this.repositorio.findById(usuario).orElse(null);
-        Rol r = this.rolrep.findById(rol).orElse(null);
-
-        if(u!=null && r!=null){
-            u.setRol(r);
-            return this.repositorio.save(u);
-        }
-        return null;
+        return "El usuario no existe";
     }
 
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
-        Optional<Usuario> opt = this.repositorio.findById(id);
-
-        if(opt.isPresent()){
+    public String delete(@PathVariable String id){
+        Usuario usuario = this.repositorio.findById(id).orElse(null);
+        if(usuario != null){
             this.repositorio.deleteById(id);
+            return "Se elimino correctamente";
         }
+        return "No existe el usuario";
     }
 
     public String Hash(String password){
@@ -103,4 +119,9 @@ public class UsuarioController {
         }
         return sb.toString();
     }
+
+
 }
+
+
+

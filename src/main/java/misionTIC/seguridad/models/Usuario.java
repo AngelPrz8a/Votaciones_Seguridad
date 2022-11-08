@@ -14,17 +14,19 @@ public class Usuario{
     private String seudonimo;
     private String correo;
     private String contraseña;
+    private String rol;
+
+//    @DBRef
+//    private Rol rol;
 
 
-    @DBRef
-    private Rol rol;
-
-
-    public Usuario(String seudonimo, String correo, String contraseña) {
+    public Usuario(String seudonimo, String correo, String contraseña, String rol) {
         this.seudonimo = seudonimo;
         this.correo = correo;
         this.contraseña = contraseña;
+        this.rol = rol;
     }
+
 
 
 
@@ -58,6 +60,15 @@ public class Usuario{
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+   //------------------
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
 }

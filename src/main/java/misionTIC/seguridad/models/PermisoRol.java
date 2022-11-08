@@ -7,16 +7,11 @@ public class PermisoRol {
 
     @Id
     private String _id;
+    private String permiso;
+    private String rol;
 
-    @DBRef
-    private Permiso permiso;
 
-    @DBRef
-    private Rol rol;
-
-    public PermisoRol() {
-    }
-    public PermisoRol(Permiso permiso, Rol rol) {
+    public PermisoRol(String permiso, String rol) {
         this.permiso = permiso;
         this.rol = rol;
     }
@@ -29,21 +24,20 @@ public class PermisoRol {
         this._id = _id;
     }
 
-    public Permiso getPermiso() {
+    public String getPermiso() {
         return permiso;
     }
 
-    public void setPermiso(Permiso permiso) {
+    public void setPermiso(String permiso) {
         this.permiso = permiso;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
-
 
 }
