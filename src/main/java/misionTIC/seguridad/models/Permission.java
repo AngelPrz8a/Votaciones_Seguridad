@@ -6,18 +6,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
-public class Permiso {
+public class Permission {
 
 
     @Id
     private String _id;
     private String url;
-    private String metodo;
+    private String method;
 
 
-    public Permiso(String url, String metodo) {
+    public Permission(String url, String method) {
         this.url = url;
-        this.metodo = metodo;
+        this.method = method;
     }
 
 
@@ -38,13 +38,12 @@ public class Permiso {
         this.url = url;
     }
 
-    public String getMetodo() {
-        return metodo;
+    public String getMethod() {
+        return method;
     }
 
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
+    public void setMethod(String method) {
+        this.method = method;
     }
-
 
 }

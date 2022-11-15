@@ -6,18 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
-public class Rol{
+public class Role {
 
     @Id
     private String _id;
-    private String nombre;
+    private String name;
 
-
-
-    public Rol(String nombre) {
-        this.nombre = nombre;
+    public Role(String name) {
+        this.name = name;
     }
-
 
     public String get_id() {
         return _id;
@@ -27,12 +24,12 @@ public class Rol{
         this._id = _id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

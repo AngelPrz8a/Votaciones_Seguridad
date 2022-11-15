@@ -1,29 +1,28 @@
 package misionTIC.seguridad.controllers;
 
-import misionTIC.seguridad.models.Rol;
-import misionTIC.seguridad.repositorios.RolRepositorio;
+import misionTIC.seguridad.models.Role;
+import misionTIC.seguridad.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/rol")
-public class RolController {
+@RequestMapping("/role")
+public class RoleController {
 
     @Autowired
-    private RolRepositorio repositorio;
+    private RoleRepository repositorio;
 
     @GetMapping("")
-    public List<Rol> index(){
+    public List<Role> index(){
         return this.repositorio.findAll();
     }
 
     @GetMapping("/{id}")
-    public Rol show(@PathVariable String id){
-        Optional<Rol> opt =  this.repositorio.findById(id);
+    public Role show(@PathVariable String id){
+        Optional<Role> opt =  this.repositorio.findById(id);
         return opt.orElse(null);
     }
 //
