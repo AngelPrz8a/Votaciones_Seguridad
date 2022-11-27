@@ -56,20 +56,20 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public String create(@RequestBody User request){
+    public User create(@RequestBody User request){
         Role rol = this.rp.findById(request.getRole()).orElse(null);
         if (rol != null){
             String clave = Hash(request.getPassword());
             request.setPassword(clave);
-            this.repositorio.save(request);
-            return "Se registro";
+            User u = this.repositorio.save(request);
+            return u;
         }
-        return "No existe el rol";
+        return null;
     }
 
 
     @PutMapping("/{id}")
-    public String update(@PathVariable String id,@RequestBody User request){
+    public User update(@PathVariable String id,@RequestBody User request){
         User u = this.repositorio.findById(id).orElse(null);
         if(u!=null ){
                 if(request.getName() != null && !request.getName().isBlank())
@@ -83,13 +83,13 @@ public class UserController {
                     if(r!=null){
                         u.setRole(request.getRole());
                     }else{
-                        return "El rol no existe";
+                        return null;
                     }
                 }
-                this.repositorio.save(u);
-                return "Se actualizo";
+                User user= this.repositorio.save(u);
+                return user;
         }
-        return "El usuario no existe";
+        return null;
     }
 
 

@@ -33,7 +33,7 @@ public class PermissionRoleController {
             PermissionRole pr = lista.get(i);
             Role r = this.rr.findById(pr.getRole()).get();
             Permission p = this.pr.findById(pr.getPermission()).get();
-            pr.setPermission(p.getUrl());
+            pr.setPermission(p.getUrl()+p.getMethod());
             pr.setRole(r.getName());
             array.add(pr);
         }
