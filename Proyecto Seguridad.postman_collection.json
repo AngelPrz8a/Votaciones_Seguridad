@@ -10,12 +10,12 @@
 			"name": "Usuario",
 			"item": [
 				{
-					"name": "Get All",
+					"name": "get all usuario",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/usuario",
+							"raw": "http://127.0.0.1:8082/user",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -25,20 +25,43 @@
 							],
 							"port": "8082",
 							"path": [
-								"usuario"
+								"user"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "show usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/user/636ec1ed6e1b0c5320340926",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"user",
+								"636ec1ed6e1b0c5320340926"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create usuario",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"seudonimo\":\"Angel\",\r\n    \"correo\":\"angel@gmail.com\",\r\n    \"contraseña\":\"12345\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Catalina\",\r\n    \"email\":\"kata@gmail.com\",\r\n    \"password\":\"12345\",\r\n    \"role\":\"636ec193455f160fb90ce76f\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +69,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/usuario",
+							"raw": "http://127.0.0.1:8082/user",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -56,20 +79,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"usuario"
+								"user"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "update usuario",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"seudonimo\":\"Carlos\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Carlos\",\r\n    \"password\":\"123\",\r\n    \"role\":\"636ec1b2455f160fb90ce771\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -77,7 +100,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/usuario/6364784dae3f5c40553f0a42",
+							"raw": "http://127.0.0.1:8082/user/636ec1ed6e1b0c5320340926",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -87,20 +110,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"usuario",
-								"6364784dae3f5c40553f0a42"
+								"user",
+								"636ec1ed6e1b0c5320340926"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "delete usuario",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/usuario/636456368bccb016dd70cff3",
+							"raw": "http://127.0.0.1:8082/user/636456368bccb016dd70cff3",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -110,7 +133,7 @@
 							],
 							"port": "8082",
 							"path": [
-								"usuario",
+								"user",
 								"636456368bccb016dd70cff3"
 							]
 						}
@@ -118,12 +141,21 @@
 					"response": []
 				},
 				{
-					"name": "Asignar Rol",
+					"name": "Validacion",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"angel@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/usuario/636483f148e7c875714656f1/63644fb52b17222e954eb316",
+							"raw": "http://127.0.0.1:8082/user/validation",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -133,9 +165,8 @@
 							],
 							"port": "8082",
 							"path": [
-								"usuario",
-								"636483f148e7c875714656f1",
-								"63644fb52b17222e954eb316"
+								"user",
+								"validation"
 							]
 						}
 					},
@@ -147,12 +178,12 @@
 			"name": "Rol",
 			"item": [
 				{
-					"name": "Get All",
+					"name": "get all rol",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/rol",
+							"raw": "http://127.0.0.1:8082/role",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -162,19 +193,19 @@
 							],
 							"port": "8082",
 							"path": [
-								"rol"
+								"role"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Show",
+					"name": "show rol",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/rol/63644fa42b17222e954eb315",
+							"raw": "http://127.0.0.1:8082/role/636ec193455f160fb90ce76f",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -184,8 +215,8 @@
 							],
 							"port": "8082",
 							"path": [
-								"rol",
-								"63644fa42b17222e954eb315"
+								"role",
+								"636ec193455f160fb90ce76f"
 							]
 						}
 					},
@@ -197,12 +228,12 @@
 			"name": "Permiso",
 			"item": [
 				{
-					"name": "Get All",
+					"name": "get all permiso",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/permiso",
+							"raw": "http://127.0.0.1:8082/permission",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -212,20 +243,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"permiso"
+								"permission"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "create permiso",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"url\":\"http://127.0.0.1:8082/permiso/\",\r\n    \"metodo\":\"GET\"\r\n}",
+							"raw": "{\r\n    \"url\":\"/partido\",\r\n    \"method\":\"POST\"\r\n\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,7 +264,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/permiso",
+							"raw": "http://127.0.0.1:8082/permission",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -243,20 +274,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"permiso"
+								"permission"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "update permiso",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"metodo\":\"POST\"\r\n}",
+							"raw": "{\r\n    \"url\":\"/partidos\",\r\n    \"method\":\"GET\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,7 +295,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/permiso/63647907ae3f5c40553f0a43",
+							"raw": "http://127.0.0.1:8082/permission/636ec569633f9c0bd518087c",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -274,20 +305,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"permiso",
-								"63647907ae3f5c40553f0a43"
+								"permission",
+								"636ec569633f9c0bd518087c"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "delete permiso",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/permiso/63647907ae3f5c40553f0a43",
+							"raw": "http://127.0.0.1:8082/permission/63647907ae3f5c40553f0a43",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -297,7 +328,7 @@
 							],
 							"port": "8082",
 							"path": [
-								"permiso",
+								"permission",
 								"63647907ae3f5c40553f0a43"
 							]
 						}
@@ -310,12 +341,12 @@
 			"name": "PermisoRol",
 			"item": [
 				{
-					"name": "Get All",
+					"name": "get all permisorol",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/permisorol",
+							"raw": "http://127.0.0.1:8082/permissionrole",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -325,19 +356,51 @@
 							],
 							"port": "8082",
 							"path": [
-								"permisorol"
+								"permissionrole"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "show permisorol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/permissionrole/636abb50671565726e97baa1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"permissionrole",
+								"636abb50671565726e97baa1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create permisorol",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permission\":\"636ef749f75f777448137c16\",\r\n    \"role\":\"636ec193455f160fb90ce76f\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/permisorol/636556852ca180490f5e183a/63644fa42b17222e954eb315",
+							"raw": "http://127.0.0.1:8082/permissionrole",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -347,21 +410,28 @@
 							],
 							"port": "8082",
 							"path": [
-								"permisorol",
-								"636556852ca180490f5e183a",
-								"63644fa42b17222e954eb315"
+								"permissionrole"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "update permisorol",
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"permission\":\"636ec2f24592f22fb0f919bc\",\r\n    \"role\":\"636ec1b2455f160fb90ce771\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:8082/permisorol/63648a3c8eab5d4c24fe6278/636556852ca180490f5e183a/63644fa42b17222e954eb315",
+							"raw": "http://127.0.0.1:8082/permissionrole/636ec3eb633f9c0bd5180876",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -371,22 +441,20 @@
 							],
 							"port": "8082",
 							"path": [
-								"permisorol",
-								"63648a3c8eab5d4c24fe6278",
-								"636556852ca180490f5e183a",
-								"63644fa42b17222e954eb315"
+								"permissionrole",
+								"636ec3eb633f9c0bd5180876"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "delete permisorol",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8082/permisorol/636556ab2ca180490f5e183b",
+							"raw": "http://127.0.0.1:8082/permissionrole/63648a3c8eab5d4c24fe6278",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -396,8 +464,41 @@
 							],
 							"port": "8082",
 							"path": [
-								"permisorol",
-								"636556ab2ca180490f5e183b"
+								"permissionrole",
+								"63648a3c8eab5d4c24fe6278"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validar permisos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\":\"/ciudadanos\",\r\n    \"method\":\"GET\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/permissionrole/validate-permission/636ec193455f160fb90ce76f",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"permissionrole",
+								"validate-permission",
+								"636ec193455f160fb90ce76f"
 							]
 						}
 					},
